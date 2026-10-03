@@ -14,3 +14,7 @@
 @media print{.feedback-play{display:none!important}.signal-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.signal-step{break-inside:avoid}.force-chart{max-width:500px}.force-control{break-inside:avoid}.test-system{break-inside:auto}.signal-step:after{display:none!important}}
 
 @media(max-width:680px){.chart-axis-labels{font-size:20px}}
+
+/* Keep adjacent introductory paragraphs aligned; grid gap owns their spacing. */
+.dissertation-copy>p{margin:0;line-height:1.65}
+.fluid-surface{fill:none;stroke:#82b4cb;stroke-width:1.5;stroke-opacity:.9}

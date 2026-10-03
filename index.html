@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://danhyzzzz.github.io/assets/haoyu-zhang-columbia.jpg">
 <meta property="og:image:alt" content="Haoyu Zhang">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=20261003-lavender">
-<link rel="stylesheet" href="styles.css?v=20261003-portrait"><link rel="stylesheet" href="instruments.css?v=20261003-lavender"><script src="app.js?v=20261003-lavender" defer></script>
+<link rel="stylesheet" href="styles.css?v=20261003-portrait"><link rel="stylesheet" href="instruments.css?v=20261003-refinements"><script src="app.js?v=20261003-refinements" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -65,7 +65,7 @@
 <clipPath id="c-sensor-window"><rect x="120" y="190" width="145" height="120"/></clipPath>
 <linearGradient id="c-metal"><stop stop-color="#83949d"/><stop offset=".22" stop-color="#d6dfe1"/><stop offset=".46" stop-color="#f9fbfb"/><stop offset=".75" stop-color="#adbcc1"/><stop offset="1" stop-color="#697e89"/></linearGradient>
 <linearGradient id="c-glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#faf8ff" stop-opacity=".95"/><stop offset="1" stop-color="#c2b3d9" stop-opacity=".55"/></linearGradient>
-<linearGradient id="c-fluid" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e4dcf1" stop-opacity=".45"/><stop offset="1" stop-color="#c9bcde" stop-opacity=".65"/></linearGradient>
+<linearGradient id="c-fluid" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c5e7f6" stop-opacity=".25"/><stop offset="1" stop-color="#9dcfe5" stop-opacity=".38"/></linearGradient>
 <linearGradient id="c-tissue" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f8edd1"/><stop offset="1" stop-color="#d7c399"/></linearGradient>
 </defs>
 <path class="axis-line" d="M300 18V380"/><text class="axis-label" x="312" y="25">LOADING AXIS</text>
@@ -78,7 +78,7 @@
 <!-- Fixed bath: a section through the shallow circular bath in the photograph. -->
 <path d="M197 218V312Q197 318 203 318H397Q403 318 403 312V218" fill="none" stroke="#b3a6c8" stroke-width="3"/>
 <path d="M200 235H400V312H200Z" fill="url(#c-fluid)"/>
-<path d="M200 235H400" stroke="#b1a0ca" stroke-width="1.5"/>
+
 <path d="M202 304H398" stroke="#d9d0e4" stroke-width="7"/>
 <rect x="257" y="318" width="86" height="8" rx="2" fill="#455d66"/>
 <rect x="272" y="326" width="56" height="33" rx="3" fill="url(#c-metal)" stroke="#6c818b"/>
@@ -86,9 +86,12 @@
 <rect x="266" y="359" width="68" height="6" rx="2" fill="#455d66"/>
 <!-- Tissue bottom stays at y=300; indentation occurs only after contact. -->
 <g id="compression-tissue"><path d="M266 284H334V300H266Z" fill="url(#c-tissue)" stroke="#a8956d" stroke-width="1"/><path d="M272 292H328" stroke="#fff8e8" opacity=".8"/></g>
-<g clip-path="url(#c-shaft-window)"><g id="compression-piston" transform="translate(0 -50)"><rect x="286" y="126" width="28" height="133" fill="url(#c-metal)" stroke="#6c818b"/><rect x="263" y="259" width="74" height="8" rx="2" fill="url(#c-metal)" stroke="#6c818b"/><path d="M263 267H337V276Q300 292 263 276Z" fill="url(#c-glass)" stroke="#9586ad" stroke-width="1.5"/><path d="M269 271H331" stroke="#fff" stroke-width="2"/></g></g>
-<g clip-path="url(#c-sensor-window)"><g id="compression-lvdt-core" transform="translate(0 -50)"><path d="M143 175V263" stroke="#6e6188" stroke-width="5"/><path d="M143 263H262" class="measurement-link"/></g></g>
-<g id="compression-platen-label" transform="translate(0 -50)"><path d="M338 274H431" class="component-leaders"/><text class="component-label" x="439" y="280">Glass platen</text></g>
+<g clip-path="url(#c-shaft-window)"><g id="compression-piston" transform="translate(0 -25)"><rect x="286" y="126" width="28" height="133" fill="url(#c-metal)" stroke="#6c818b"/><rect x="263" y="259" width="74" height="8" rx="2" fill="url(#c-metal)" stroke="#6c818b"/><path d="M263 267H337V276Q300 292 263 276Z" fill="url(#c-glass)" stroke="#9586ad" stroke-width="1.5"/><path d="M269 271H331" stroke="#fff" stroke-width="2"/></g></g>
+<g clip-path="url(#c-sensor-window)"><g id="compression-lvdt-core" transform="translate(0 -25)"><path d="M143 175V263" stroke="#6e6188" stroke-width="5"/><path d="M143 263H262" class="measurement-link"/></g></g>
+<g id="compression-platen-label" transform="translate(0 -25)"><path d="M338 274H431" class="component-leaders"/><text class="component-label" x="439" y="280">Glass platen</text></g>
+<!-- A faint foreground wash and meniscus show immersion without obscuring components. -->
+<path d="M200 235H400V312H200Z" fill="url(#c-fluid)" opacity=".18"/>
+<path d="M200 233Q202 235 206 235H394Q398 235 400 233" class="fluid-surface"/>
 <!-- Leaders identify components rather than inventing mounting hardware. -->
 <g class="component-leaders"><path d="M355 85H425"/><path d="M129 98H118"/><path d="M335 292H438"/><path d="M328 341H429"/><path d="M200 252H126"/></g>
 <g class="component-label"><text x="435" y="82">Solenoid</text><text x="435" y="102">actuator</text><text x="36" y="91">LVDT</text><text x="35" y="111" class="label-detail">displacement</text><text x="447" y="297">Cartilage</text><text x="437" y="347">Load cell</text><text x="35" y="258">Fluid bath</text></g>
@@ -109,14 +112,14 @@
 <title id="tensile-svg-title">Aligned tensile fatigue test with force and displacement sensing</title><desc id="tensile-svg-desc">A voice-coil actuator moves the upper grip. The immersed cartilage specimen connects aligned upper and lower grips above a load cell. The adjacent LVDT measures displacement. The specimen extends slightly along the loading axis.</desc>
 <defs>
 <linearGradient id="t-metal"><stop stop-color="#7f929c"/><stop offset=".23" stop-color="#d4dde0"/><stop offset=".48" stop-color="#f7fafb"/><stop offset=".77" stop-color="#acbbc0"/><stop offset="1" stop-color="#6b818d"/></linearGradient>
-<linearGradient id="t-fluid" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e4dcf1" stop-opacity=".4"/><stop offset="1" stop-color="#c9bcde" stop-opacity=".65"/></linearGradient>
+<linearGradient id="t-fluid" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c5e7f6" stop-opacity=".25"/><stop offset="1" stop-color="#9dcfe5" stop-opacity=".38"/></linearGradient>
 <linearGradient id="t-tissue"><stop stop-color="#c6af7f"/><stop offset=".5" stop-color="#f6e9c8"/><stop offset="1" stop-color="#c6af7f"/></linearGradient>
 </defs>
 <path class="axis-line" d="M300 18V380"/><text class="axis-label" x="312" y="25">LOADING AXIS</text>
 <rect x="248" y="51" width="104" height="64" rx="7" fill="url(#t-metal)" stroke="#6c818b"/><rect x="244" y="47" width="112" height="8" rx="3" fill="#455d66"/><path d="M263 58V108M337 58V108" stroke="#778d96"/>
 <rect x="427" y="72" width="28" height="105" rx="6" fill="url(#t-metal)" stroke="#6c818b"/><path d="M438 79V168" stroke="#fff" opacity=".8"/>
 <path d="M240 181V324Q240 331 247 331H353Q360 331 360 324V181" fill="none" stroke="#b3a6c8" stroke-width="3"/>
-<path d="M243 199H357V326H243Z" fill="url(#t-fluid)"/><path d="M243 199H357" stroke="#b1a0ca" stroke-width="1.5"/>
+<path d="M243 199H357V326H243Z" fill="url(#t-fluid)"/>
 <!-- The lower clamp and load cell stay fixed; the upper assembly moves axially. -->
 <path id="tensile-specimen" d="M285 216H315V231C315 240 306 242 306 252V275C306 284 315 286 315 292V305H285V292C285 286 294 284 294 275V252C294 242 285 240 285 231Z" fill="url(#t-tissue)" stroke="#a8956d"/>
 <g id="tensile-grip"><rect x="293" y="114" width="14" height="80" fill="url(#t-metal)" stroke="#6c818b"/><path d="M277 194H323V223H277Z" fill="url(#t-metal)" stroke="#6c818b"/><path d="M278 214H322" stroke="#455d66" stroke-width="2"/><circle cx="284" cy="204" r="3" fill="#455d66"/><circle cx="316" cy="204" r="3" fill="#455d66"/></g>
@@ -124,6 +127,8 @@
 <rect x="293" y="322" width="14" height="14" fill="url(#t-metal)"/>
 <rect x="269" y="337" width="62" height="31" rx="3" fill="url(#t-metal)" stroke="#6c818b"/><path d="M278 343L288 352 278 361M322 343L312 352 322 361" fill="none" stroke="#758b92"/><rect x="263" y="368" width="74" height="5" rx="2" fill="#455d66"/>
 <g id="tensile-lvdt-core"><path d="M441 166V206" stroke="#5d7881" stroke-width="5"/><path d="M441 206H325" class="measurement-link"/></g>
+<path d="M243 199H357V326H243Z" fill="url(#t-fluid)" opacity=".18"/>
+<path d="M243 197Q245 199 249 199H351Q355 199 357 197" class="fluid-surface"/>
 <g class="component-leaders"><path d="M248 82H122"/><path d="M455 101H477"/><path id="tensile-grip-leader" d="M277 206H157"/><path d="M294 265H154"/><path d="M277 314H154"/><path d="M331 352H415"/><path d="M359 275H415"/></g>
 <g class="component-label"><text x="35" y="76">Voice-coil</text><text x="35" y="96">actuator</text><text x="483" y="94">LVDT</text><text x="483" y="114" class="label-detail">displacement</text><text x="35" y="212">Upper grip</text><text x="35" y="261">Cartilage</text><text x="35" y="281" class="label-detail">gauge region</text><text x="35" y="319">Lower grip</text><text x="425" y="280">Fluid bath</text><text x="425" y="357">Load cell</text></g>
 <path d="M212 138V169m-5-25 5-6 5 6m-10 19 5 6 5-6" stroke="#756398" stroke-width="2" fill="none"/>

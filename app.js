@@ -225,14 +225,14 @@ document.querySelectorAll('[data-test-system]').forEach(system => {
 
   function renderCycle() {
     if (compression) {
-      // 25 px platen thickness; 50 px retracted clearance. Drawing dimensions only.
+      // 25 px platen thickness; 25 px retracted clearance. Drawing dimensions only.
       // Contact loading is a separate part of the cycle, so retraction does not
       // increase specimen indentation (maximum 0.5 px of a 16 px thickness).
       const smooth = x => x * x * (3 - 2 * x);
       let travel;
-      if (phase < 0.3) travel = -50 * (1 - smooth(phase / 0.3));
+      if (phase < 0.3) travel = -25 * (1 - smooth(phase / 0.3));
       else if (phase <= 0.7) travel = 0.5 * Math.sin(Math.PI * (phase - 0.3) / 0.4) ** 2;
-      else travel = -50 * smooth((phase - 0.7) / 0.3);
+      else travel = -25 * smooth((phase - 0.7) / 0.3);
       const indentation = Math.max(0, travel);
       const scale = 1 - indentation / 16;
       movingAssembly.setAttribute('transform', `translate(0 ${travel})`);
