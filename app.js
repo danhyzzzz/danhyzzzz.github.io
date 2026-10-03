@@ -35,35 +35,30 @@ document.addEventListener('keydown', event => {
   }
 });
 
-const filterButtons = [...document.querySelectorAll('[data-filter]')];
 const papers = [...document.querySelectorAll('.publication')];
 const search = document.querySelector('#publication-search');
 const count = document.querySelector('#publication-count');
-let selectedCategory = 'full-length';
 function filterPublications() {
   const query = search.value.trim().normalize('NFKC').toLocaleLowerCase();
   let visible = 0;
   papers.forEach(paper => {
     const searchableText = `${paper.textContent} ${paper.querySelector('.doi-link')?.getAttribute('href') || ''}`;
-    const matches = paper.dataset.category === selectedCategory
-      && searchableText.normalize('NFKC').toLocaleLowerCase().includes(query);
+    const matches = searchableText.normalize('NFKC').toLocaleLowerCase().includes(query);
     paper.hidden = !matches;
     if (matches) visible++;
   });
-  filterButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === selectedCategory)));
+  document.querySelectorAll('.publication-group').forEach(group => {
+    group.hidden = ![...group.querySelectorAll('.publication')].some(paper => !paper.hidden);
+  });
   count.textContent = `${visible} ${visible === 1 ? 'entry' : 'entries'} shown`;
   document.querySelector('#no-publications').hidden = visible !== 0;
 }
-filterButtons.forEach(button => button.addEventListener('click', () => {
-  selectedCategory = button.dataset.filter;
-  filterPublications();
-}));
 search.addEventListener('input', filterPublications);
 document.querySelector('#clear-search').addEventListener('click', () => {
   search.value = ''; filterPublications(); search.focus();
 });
 document.querySelectorAll('[data-show-publications]').forEach(link => link.addEventListener('click', () => {
-  selectedCategory = link.dataset.showPublications; search.value = ''; filterPublications();
+  search.value = ''; filterPublications();
 }));
 document.querySelector('#publication-controls').hidden = false;
 filterPublications();
@@ -124,60 +119,57 @@ if ('IntersectionObserver' in window) {
 }
 
 
-// Two conceptual apparatus animations, driven by one cycle phase.
-// No displayed motion, strain, or feedback trace is experimental data.
-const studio = document.querySelector('.instrument-studio');
-if (studio) {
-  const deviceTabs = [...studio.querySelectorAll('[role="tab"]')];
-  const devicePanels = [...studio.querySelectorAll('[data-instrument]')];
-  const play = studio.querySelector('#studio-play');
-  const phaseControl = studio.querySelector('#cycle-phase');
-  const speed = studio.querySelector('#studio-speed');
-  const caption = studio.querySelector('#studio-caption');
-  const piston = studio.querySelector('#compression-piston');
-  const tissue = studio.querySelector('#compression-tissue');
-  const grip = studio.querySelector('#tensile-grip');
-  const gripCallout = studio.querySelector('#tensile-grip-callout');
-  const specimen = studio.querySelector('#tensile-specimen');
-  const fibers = studio.querySelector('#tensile-fibers');
-  const sensor = studio.querySelector('#sensor-light');
-  const returnPath = studio.querySelector('#feedback-return');
-  const particle = studio.querySelector('#feedback-particle');
-  const returnLength = returnPath.getTotalLength();
-  let mode = 'compression';
+// Independent conceptual cutaways, aligned to the source platform figures.
+// Motion is illustrative, not a mechanical solution or experimental measurement.
+document.querySelectorAll('[data-test-system]').forEach(system => {
+  const compression = system.dataset.testSystem === 'compression';
+  const play = system.querySelector('.system-play');
+  const phaseControl = system.querySelector('.system-phase');
+  const speed = system.querySelector('.system-speed');
+  const phaseLabel = system.querySelector('[data-phase-label]');
+  const output = system.querySelector('output');
+  const movingAssembly = system.querySelector(compression ? '#compression-piston' : '#tensile-grip');
+  const sensorCore = system.querySelector(compression ? '#compression-lvdt-core' : '#tensile-lvdt-core');
+  const specimen = system.querySelector(compression ? '#compression-tissue' : '#tensile-specimen');
   let phase = 0;
   let playing = false;
   let frame = null;
   let lastTime = null;
 
   function renderCycle() {
-    const load = (1 - Math.cos(phase * Math.PI * 2)) / 2;
-    piston.setAttribute('transform', `translate(0 ${-24 * (1 - load)})`);
-    const compressionScale = 1 - 0.18 * load;
-    tissue.setAttribute('transform', `translate(0 ${414 * (1 - compressionScale)}) scale(1 ${compressionScale})`);
-    grip.setAttribute('transform', `translate(0 ${-30 * load})`);
-    gripCallout.setAttribute('d', `M327 ${290 - 30 * load} L416 290`);
-    const top = 301 - 30 * load;
-    const length = 373 - top;
-    const upperWaist = top + length * 0.4;
-    const lowerWaist = top + length * 0.66;
-    specimen.setAttribute('d', `M280 ${top} H320 V${top + 12} C320 ${top + 22} 309 ${upperWaist - 10} 309 ${upperWaist} V${lowerWaist} C309 ${lowerWaist + 10} 320 355 320 364 V373 H280 V364 C280 355 291 ${lowerWaist + 10} 291 ${lowerWaist} V${upperWaist} C291 ${upperWaist - 10} 280 ${top + 22} 280 ${top + 12} Z`);
-    fibers.setAttribute('d', `M296 ${top + 10} V363 M300 ${top + 8} V365 M304 ${top + 10} V363`);
-    sensor.setAttribute('opacity', String(0.45 + 0.55 * load));
-    const point = returnPath.getPointAtLength(phase * returnLength);
-    particle.setAttribute('cx', point.x);
-    particle.setAttribute('cy', point.y);
+    const cycle = (1 - Math.cos(phase * Math.PI * 2)) / 2;
+    if (compression) {
+      // The curved platen reaches the flat tissue surface after 2 px of travel.
+      // Then only 0.5 px of the 16 px specimen thickness is compressed.
+      const travel = 2.5 * cycle;
+      const indentation = Math.max(0, travel - 2);
+      const scale = 1 - indentation / 16;
+      movingAssembly.setAttribute('transform', `translate(0 ${travel})`);
+      sensorCore.setAttribute('transform', `translate(0 ${travel})`);
+      specimen.setAttribute('transform', `translate(0 ${300 * (1 - scale)}) scale(1 ${scale})`);
+    } else {
+      const extension = 2.4 * cycle;
+      // Scale about the fixed lower attachment; upper attachment follows the grip.
+      const scale = 1 + extension / (305 - 216);
+      movingAssembly.setAttribute('transform', `translate(0 ${-extension})`);
+      sensorCore.setAttribute('transform', `translate(0 ${-extension})`);
+      specimen.setAttribute('transform', `translate(0 ${305 * (1 - scale)}) scale(1 ${scale})`);
+      system.querySelector('#tensile-grip-leader').setAttribute('d', `M277 ${206 - extension}H157`);
+    }
+    const stage = phase < 0.5
+      ? (compression ? 'Loading' : 'Increasing tension')
+      : (compression ? 'Unloading' : 'Releasing tension');
+    phaseLabel.textContent = playing ? stage : `Paused · ${stage.toLowerCase()}`;
     phaseControl.value = String(phase * 100);
-    const stage = phase < 0.5 ? (mode === 'compression' ? 'Loading' : 'Increasing tension') : (mode === 'compression' ? 'Unloading' : 'Releasing tension');
     phaseControl.setAttribute('aria-valuetext', `${Math.round(phase * 100)} percent of cycle, ${stage.toLowerCase()}`);
-    studio.querySelectorAll('[data-phase-label]').forEach(label => { label.textContent = playing ? stage : `Paused · ${stage.toLowerCase()}`; });
+    output.textContent = `${Math.round(phase * 100)}%`;
   }
   function tick(time) {
     if (!playing) return;
     if (lastTime !== null) {
-      // Compression period follows the 2 Hz source protocol; tensile timing is illustrative.
-      const duration = mode === 'compression' ? 500 : 1000;
-      phase = (phase + Math.min(time - lastTime, 100) * Number(speed.value) / duration) % 1;
+      // Compression full-speed period follows 2 Hz; tensile timing is illustrative.
+      const period = compression ? 500 : 1000;
+      phase = (phase + Math.min(time - lastTime, 100) * Number(speed.value) / period) % 1;
     }
     lastTime = time;
     renderCycle();
@@ -188,38 +180,12 @@ if (studio) {
     lastTime = null;
     if (frame !== null) cancelAnimationFrame(frame);
     frame = null;
-    studio.dataset.playing = String(playing);
     play.setAttribute('aria-pressed', String(playing));
-    play.querySelector('span').textContent = playing ? 'Pause animation' : 'Play animation';
+    play.textContent = playing ? 'Pause animation' : 'Play animation';
+    play.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${compression ? 'compression' : 'tensile'} animation`);
     renderCycle();
     if (playing) frame = requestAnimationFrame(tick);
   }
-  function selectDevice(tab, focus = false) {
-    setPlaying(false);
-    mode = tab.id === 'compression-tab' ? 'compression' : 'tension';
-    phase = 0;
-    deviceTabs.forEach(item => {
-      const active = item === tab;
-      item.setAttribute('aria-selected', String(active));
-      item.tabIndex = active ? 0 : -1;
-    });
-    devicePanels.forEach(panel => { panel.hidden = panel.dataset.instrument !== mode; });
-    caption.textContent = mode === 'compression'
-      ? 'Adapted from my compression apparatus and proposal animation. Motion and tissue deformation are illustrative; the experimental compression frequency is 2 Hz.'
-      : 'Based on my tensile tester CAD and control description. Motion, strain, playback timing, and signal flow are illustrative; they do not represent measured data.';
-    renderCycle();
-    if (focus) tab.focus();
-  }
-  deviceTabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => selectDevice(tab));
-    tab.addEventListener('keydown', event => {
-      let next;
-      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') next = (index + 1) % deviceTabs.length;
-      if (event.key === 'Home') next = 0;
-      if (event.key === 'End') next = deviceTabs.length - 1;
-      if (next !== undefined) { event.preventDefault(); selectDevice(deviceTabs[next], true); }
-    });
-  });
   play.addEventListener('click', () => setPlaying(!playing));
   phaseControl.addEventListener('input', () => {
     const requestedPhase = Number(phaseControl.value) / 100;
@@ -232,9 +198,8 @@ if (studio) {
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {
       if (!entries[0].isIntersecting) setPlaying(false);
-    }).observe(studio);
+    }).observe(system);
   }
-  studio.querySelector('.instrument-tabs').hidden = false;
-  studio.querySelector('.studio-controls').hidden = false;
-  selectDevice(deviceTabs[0]);
-}
+  system.querySelector('.test-controls').hidden = false;
+  renderCycle();
+});
