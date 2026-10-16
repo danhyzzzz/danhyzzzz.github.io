@@ -84,10 +84,13 @@
 @media(max-width:560px){.hero-recognition{display:flex;gap:9px;font-size:.74rem;flex-wrap:wrap}.hero-recognition-label{width:100%}.hero-recognition svg{margin-left:auto}.project-recognition .recognition-title{font-size:1.2rem}}
 @media print{.hero-recognition{display:none}.project-recognition,.media-card{break-inside:avoid}.media-card{margin-bottom:10px}.project-media-grid{display:block}}
 
-/* NOVAJoint is a distinct professional role within the existing Experience panel. */
+/* Preserve the NOVAJoint feature styling in its standalone section. */
+.novajoint-section{background:var(--soft);border-bottom:1px solid var(--border)}
+.novajoint-section .novajoint-experience{padding:0;border:0}
+.project-timeline-link{margin-top:10px;font-size:.78rem}
 .novajoint-experience{min-width:0;padding:30px 0 42px;border-bottom:1px solid var(--border);scroll-margin-top:115px}
 .novajoint-header{max-width:930px}.novajoint-header .eyebrow{margin-bottom:11px}
-.novajoint-header h3{font-size:clamp(1.55rem,2.5vw,2.05rem);line-height:1.25}
+.novajoint-header h2{font-size:clamp(1.55rem,2.5vw,2.05rem);line-height:1.25}
 .novajoint-role{color:var(--accent);font-size:1rem;font-weight:600;margin-top:9px}
 .novajoint-tenure{color:var(--muted);font-size:.79rem;margin-top:5px}
 .novajoint-tenure span{padding-inline:5px}
@@ -104,8 +107,7 @@
 .novajoint-supporting .project-copy h4{font-size:clamp(1.35rem,2vw,1.72rem);line-height:1.3;letter-spacing:-.03em;margin-bottom:17px}
 .novajoint-supporting .project-copy>p:not(.eyebrow){color:var(--muted);font-size:.87rem;line-height:1.75}
 .novajoint-supporting .project-goal{margin-top:17px}
-.novajoint-experience+.timeline{margin-top:15px}
 @media(min-width:1100px){.novajoint-experience{scroll-margin-top:35px}}
 @media(max-width:900px){.novajoint-contributions{grid-template-columns:1fr}.novajoint-contribution{padding:21px 23px}.novajoint-supporting{gap:25px}}
-@media(max-width:680px){.novajoint-experience{padding-top:6px}.novajoint-supporting{grid-template-columns:1fr;gap:24px}.novajoint-supporting .project-photo img{aspect-ratio:16/10}.novajoint-experience .project-recognition{margin-top:25px}.novajoint-translation{margin-top:30px}.novajoint-experience+.timeline{margin-top:5px}}
+@media(max-width:680px){.novajoint-supporting{grid-template-columns:1fr;gap:24px}.novajoint-supporting .project-photo img{aspect-ratio:16/10}.novajoint-experience .project-recognition{margin-top:25px}.novajoint-translation{margin-top:30px}}
 @media print{.novajoint-experience{break-inside:auto}.novajoint-contributions{display:block}.novajoint-contribution{break-inside:avoid;margin-bottom:10px}.novajoint-supporting{display:block}.novajoint-supporting .project-photo{max-width:430px}}
