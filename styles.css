@@ -56,13 +56,12 @@
 @media(max-width:560px){.tabs{display:flex;overflow-x:auto;scrollbar-width:thin}.tabs button{flex:none;white-space:nowrap;padding:12px 8px}.mentorship-overview{padding:24px 22px}.mentorship-programs{grid-template-columns:1fr}.mentorship-program{padding:22px}.mentorship-breakdown{font-size:.77rem}}
 @media print{.mentorship-programs{display:block}.mentorship-program{break-inside:avoid;margin-top:12px}}
 
-/* NOVAKnee recognition uses the existing lavender palette and project grid. */
+/* NOVAKnee recognition uses the existing lavender palette and media cards. */
 .hero-recognition{display:inline-flex;align-items:center;gap:13px;max-width:100%;margin-top:23px;padding:11px 15px;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:9px;background:var(--surface);color:var(--ink);font-size:.78rem;line-height:1.5;text-decoration:none;transition:border-color .2s,background .2s,transform .2s}
 .hero-recognition:hover{background:var(--soft);border-color:var(--accent);text-decoration:none;transform:translateY(-2px)}
 .hero-recognition-label{flex:none;color:var(--accent);font-size:.64rem;font-weight:650;letter-spacing:.1em;text-transform:uppercase}
 .hero-recognition svg{width:14px;height:14px;color:var(--accent)}
 .hero-recognition em,.project-recognition em{font-style:normal;font-weight:650}
-#novajoint.project-feature{row-gap:32px}
 .project-recognition,.project-media{grid-column:1/-1;min-width:0}
 .project-recognition{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:23px 27px;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:11px;background:var(--soft)}
 .project-recognition .eyebrow{margin-bottom:8px}
@@ -84,3 +83,29 @@
 @media(max-width:680px){.project-recognition{display:block;padding:21px 22px}.recognition-category{display:inline-block;margin-top:15px}.project-media-grid{grid-template-columns:1fr}.media-card{padding:21px 22px}}
 @media(max-width:560px){.hero-recognition{display:flex;gap:9px;font-size:.74rem;flex-wrap:wrap}.hero-recognition-label{width:100%}.hero-recognition svg{margin-left:auto}.project-recognition .recognition-title{font-size:1.2rem}}
 @media print{.hero-recognition{display:none}.project-recognition,.media-card{break-inside:avoid}.media-card{margin-bottom:10px}.project-media-grid{display:block}}
+
+/* NOVAJoint is a distinct professional role within the existing Experience panel. */
+.novajoint-experience{min-width:0;padding:30px 0 42px;border-bottom:1px solid var(--border);scroll-margin-top:115px}
+.novajoint-header{max-width:930px}.novajoint-header .eyebrow{margin-bottom:11px}
+.novajoint-header h3{font-size:clamp(1.55rem,2.5vw,2.05rem);line-height:1.25}
+.novajoint-role{color:var(--accent);font-size:1rem;font-weight:600;margin-top:9px}
+.novajoint-tenure{color:var(--muted);font-size:.79rem;margin-top:5px}
+.novajoint-tenure span{padding-inline:5px}
+.novajoint-intro{color:var(--muted);font-size:.91rem;line-height:1.78;margin-top:22px}
+.novajoint-experience .project-recognition{margin-top:28px}
+.novajoint-experience .project-media{margin-top:26px}
+.novajoint-translation{margin-top:35px;padding-top:31px;border-top:1px solid var(--border)}
+.novajoint-translation>h4{font-size:1.37rem;font-weight:600;letter-spacing:-.025em;margin-bottom:19px}
+.novajoint-contributions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.novajoint-contribution{min-width:0;padding:23px 23px 25px;background:var(--surface);border:1px solid var(--border);border-radius:11px}
+.novajoint-contribution h5{margin:0;color:var(--ink);font-size:.98rem;font-weight:600;line-height:1.43;letter-spacing:-.015em}
+.novajoint-contribution p{margin-top:13px;color:var(--muted);font-size:.81rem;line-height:1.7}
+.novajoint-supporting{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;align-items:center;margin-top:37px;padding-top:34px;border-top:1px solid var(--border)}
+.novajoint-supporting .project-copy h4{font-size:clamp(1.35rem,2vw,1.72rem);line-height:1.3;letter-spacing:-.03em;margin-bottom:17px}
+.novajoint-supporting .project-copy>p:not(.eyebrow){color:var(--muted);font-size:.87rem;line-height:1.75}
+.novajoint-supporting .project-goal{margin-top:17px}
+.novajoint-experience+.timeline{margin-top:15px}
+@media(min-width:1100px){.novajoint-experience{scroll-margin-top:35px}}
+@media(max-width:900px){.novajoint-contributions{grid-template-columns:1fr}.novajoint-contribution{padding:21px 23px}.novajoint-supporting{gap:25px}}
+@media(max-width:680px){.novajoint-experience{padding-top:6px}.novajoint-supporting{grid-template-columns:1fr;gap:24px}.novajoint-supporting .project-photo img{aspect-ratio:16/10}.novajoint-experience .project-recognition{margin-top:25px}.novajoint-translation{margin-top:30px}.novajoint-experience+.timeline{margin-top:5px}}
+@media print{.novajoint-experience{break-inside:auto}.novajoint-contributions{display:block}.novajoint-contribution{break-inside:avoid;margin-bottom:10px}.novajoint-supporting{display:block}.novajoint-supporting .project-photo{max-width:430px}}

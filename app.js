@@ -86,7 +86,28 @@ tabs.forEach((tab, index) => {
   });
 });
 document.querySelector('#work-tabs').hidden = false;
-selectTab(tabs[0]);
+const experienceTab = document.querySelector('#tab-experience');
+const novajoint = document.querySelector('#novajoint');
+function selectExperienceForHash() {
+  if (location.hash !== '#background' && location.hash !== '#novajoint') return;
+  selectTab(experienceTab);
+  if (location.hash === '#novajoint') {
+    requestAnimationFrame(() => novajoint.scrollIntoView({block: 'start'}));
+  }
+}
+selectTab(location.hash === '#background' || location.hash === '#novajoint' ? experienceTab : tabs[0]);
+if (location.hash === '#novajoint') {
+  requestAnimationFrame(() => novajoint.scrollIntoView({block: 'start'}));
+}
+document.querySelectorAll('a[href="#novajoint"], a[href="#background"]').forEach(link => {
+  link.addEventListener('click', () => {
+    selectTab(experienceTab);
+    if (link.hash === '#novajoint') {
+      requestAnimationFrame(() => novajoint.scrollIntoView({block: 'start'}));
+    }
+  });
+});
+window.addEventListener('hashchange', selectExperienceForHash);
 
 const copyButton = document.querySelector('#copy-email');
 if (navigator.clipboard && window.isSecureContext) {
