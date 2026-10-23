@@ -84,6 +84,14 @@
 @media(max-width:560px){.hero-recognition{display:flex;gap:9px;font-size:.74rem;flex-wrap:wrap}.hero-recognition-label{width:100%}.hero-recognition svg{margin-left:auto}.project-recognition .recognition-title{font-size:1.2rem}}
 @media print{.hero-recognition{display:none}.project-recognition,.media-card{break-inside:avoid}.media-card{margin-bottom:10px}.project-media-grid{display:block}}
 
+/* This distinction belongs to the linked paper, not to a general awards list. */
+.recognition-badge{display:inline-flex;align-items:baseline;gap:8px;max-width:100%;padding:7px 10px;border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:7px;background:var(--soft);color:var(--accent-bright);font-size:.74rem;font-weight:550;line-height:1.55;text-decoration:none}
+.recognition-badge>span{min-width:0}.recognition-star{flex:none;font-size:.8rem}
+.research-card .research-recognition{align-self:flex-start;margin:0 0 17px;font-size:.72rem}
+.research-recognition:hover{border-color:var(--accent);text-decoration:none}
+.publication .publication-recognition{margin:12px 0 0}
+.publication-infographic{max-width:720px;margin:20px 0 0}.publication-infographic img{width:100%;height:auto;border:1px solid var(--border);border-radius:8px}.publication-infographic figcaption{margin-top:8px;color:var(--muted);font-size:.74rem;line-height:1.6}
+
 /* Preserve the NOVAJoint feature styling in its standalone section. */
 .novajoint-section{background:var(--soft);border-bottom:1px solid var(--border)}
 .novajoint-section .novajoint-experience{padding:0;border:0}
